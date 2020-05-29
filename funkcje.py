@@ -9,6 +9,10 @@ def iter3(tab,znak,pole,nr):
     return(a,pole,znak)
 
 
+class ZłePoleEx(Exception):
+    print('Złe pole w module przypsania ')
+    #return
+
 class Plansza:
     def __init__(self):
         self.tab=[' ' for i in range(9)]
@@ -18,6 +22,13 @@ class Plansza:
             if (i % 3 == 0):
                 print('\n')
             print(self.tab[i], '|', end='')
+
+    def wczytajPole(self, znak,pole):
+        if 9 >= pole and pole >= 1 and self.tab[pole] == ' ':
+            self.tab[pole] = znak
+        else:
+            raise ZłePoleEx
+
 
     def sprawdz(self):
 
@@ -47,17 +58,6 @@ class Plansza:
 
 # def pytaj(i):
 # i=int(input('gracz',i,'proszę podać nr pola'))
-
-
-
-def wczytajPole(plansza,znak):
-    text=['\ngracz ', znak, 'proszę podać nr pola']
-    gracz1 = int(input(text))
-    if 9 >= gracz1 and gracz1 >= 1 and plansza[gracz1] == ' ':
-        plansza[gracz1] = znak
-    else:
-        print('error')
-        wczytajPole(plansza,znak)
 
 
 def ruchKomp(plansza,znak):
