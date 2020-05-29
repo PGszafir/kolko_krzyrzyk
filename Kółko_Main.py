@@ -1,4 +1,4 @@
-import funkcje
+import funkcja
 #import pygame
 import sys
 import random
@@ -10,11 +10,7 @@ pl1 = [' ' for i in range(9)]
 
 print('wersja z komp')
 
-funkcje.pierwszy_etap(pl1)
-
-
-
-
+funkcja.pierwszy_etap(pl1)
 '''
 pygame.init()
 OKNOGRY = pygame.display.set_mode((500, 500), 0, 32)
