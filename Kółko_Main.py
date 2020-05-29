@@ -3,7 +3,7 @@ import funkcja
 import sys
 import random
 from pygame.locals import *
-print('kolko-krzyzyk \n Początek Gry')
+print('kolko-krzyzyk \nPoczątek Gry')
 
 pl0 = [' ' for i in range(9)]
 pl1 = [' ' for i in range(9)]
@@ -11,6 +11,10 @@ pl1 = [' ' for i in range(9)]
 print('wersja z komp')
 
 funkcja.pierwszy_etap(pl1)
+
+
+
+
 '''
 pygame.init()
 OKNOGRY = pygame.display.set_mode((500, 500), 0, 32)
