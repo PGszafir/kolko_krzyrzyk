@@ -3,7 +3,7 @@ import funkcja
 import sys
 import random
 from pygame.locals import *
-print('kolko-krzyzyk')
+print('kolko-krzyzyk \n Początek Gry')
 
 pl0 = [' ' for i in range(9)]
 pl1 = [' ' for i in range(9)]
