@@ -1,16 +1,34 @@
-def fun1:
+def fun1():
   print('spis funkcji')
+
+
+class Plansza:
+    def __init__(self):
+        self.tab=[' ' for i in range(9)]
+
+    def rys_plansza(self):
+        for i in range(0, 9):
+            if (i % 3 == 0):
+                print('\n')
+            print(tab[i], '|', end='')
+
+
+
+
+
+
+
+
+
+
+
 
 
 plwzorc = []
 for i in range(0, 9):
     plwzorc.append(i + 1)
 
-def rys_plansza(tab):
-    for i in range(0, 9):
-        if (i % 3 == 0):
-            print('\n')
-        print(tab[i], '|', end='')
+
 
 # def pytaj(i):
 # i=int(input('gracz',i,'proszę podać nr pola'))
