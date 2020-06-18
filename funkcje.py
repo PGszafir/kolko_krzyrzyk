@@ -3,13 +3,13 @@ def fun1():
 
 def iter3(tab,znak,pole,nr):
     a=0
-    for j in range(3):
+    for j in range(3):#sprawdzanie dla danego pola znaków na polach odległych o nr
         if(tab[pole+j*nr]==znak):
             a+=1
-    return(a,pole,znak)
+    return(a,pole,znak)#zwraca ile pól ma pożądany znak,liczac od pole
 
 
-class ZłePoleEx(Exception):
+class ZłePoleEx:#(Exception):
     def __init__(self,value,plansza,znak):
         self.value=value
         if value==0:
@@ -35,7 +35,7 @@ class Plansza:
         if 9 >= pole and pole >= 1 and self.tab[pole-1] == ' ':
             self.tab[pole-1] = znak
         else:
-            raise ZłePoleEx(0,self,znak)
+            ZłePoleEx(0,self,znak)#raise ZłePoleEx(0,self,znak)
 
 
     def sprawdz(self):
@@ -45,26 +45,41 @@ class Plansza:
         # SKOS LEWO +2
         # SKOS PRAWO +4
         zn = ['O', 'X']
-        for z in zn:
+        a1=b1=c1=(0,0,0)
+        for z in zn:#poziom
             for i in range(0, 7, 3):  # +1
                 a = iter3(self.tab, z, i, 1)
-                print(a)
+                if a[0]>0:
+                    a1=a
+                #print(a)
                 if a[0] == 3:
-                    print('Koniec Gry wygrywa:', a[2])
+                    print('Koniec Gry wygrywa a:', a[2])
                     return (a)
-            for i in range(3):
+            for i in range(3):#pion
                 b = iter3(self.tab,  z, i, 2)
-                print(b)
+                if b[0]>0:
+                    b1=b
+                #print(b)
                 if b[0] == 3:
-                    print('Koniec Gry wygrywa:',b[2])
+                    print('Koniec Gry wygrywa b:',b[2])
                     return b
-            for i in range(0, 3, 2):
+            for i in range(0, 3, 2):#skos
                 c = iter3(self.tab, z, i, 4 - i)
-                print(c)
+                if c[0]>0:
+                    c1=c
+                #print(c)
                 if c[0] == 3:
-                    print('Koniec Gry wygrywa:', c[2])
+                    print('Koniec Gry wygrywa c:', c[2])
                     return c
-        return max(a, b, c)
+
+
+        if a1[0]>=b1[0]and a1[0]>=c1[0]:
+            return a1
+        elif b1[0]>c1[0]:
+            return b
+        else:
+            return c
+
 
 
 # def pytaj(i):
@@ -73,8 +88,11 @@ class Plansza:
 
 def ruchKomp(plansza,znak):
     a=plansza.sprawdz()
-    if(a[2]==znak):
-        print('gracz',znak,'blisko wygranej')
+    print(a)
+    if(a[0]==2):
+        print('gracz',a[2],'blisko wygranej')
+    elif(a[0]==3):
+        print('KONIEC')
     else:
         print('randomiks')
 
@@ -88,13 +106,27 @@ def pierwszy_etap(plansza):
     print("to pierwszy estp gry w którym kazdy z graczy może napirzemian dołozyć 3 pionki")
     plansza.rys_plansza()
     znak=input('wybierz znak jakim chcesz grać O lub X')
-    if znak=='X':
+    if znak in 'Xx':
         for j in range(3):
             ruchGracza(plansza,'X')
-            ruchKomp(plansza,'Y')
+            ruchKomp(plansza,'O')
             print('')
             plansza.rys_plansza()
             print('')
-    plansza.sprawdz()
-    #plansza[komputer] = 'O'
-    #rys_plansza(plansza)
+    elif znak in 'o0O':
+        for j in range(3):
+            ruchKomp(plansza,'X')
+            ruchGracza(plansza,'O')
+            print('grasz O')
+            plansza.rys_plansza()
+            print('')
+    a=plansza.sprawdz()
+    if a[0]==3:
+        return 0
+    return plansza,znak
+def drugi_etap(plansza,znak):
+    print('Drugi Etap')
+    print('Grasz:',znak)
+    plansza.rys_plansza()
+
+
