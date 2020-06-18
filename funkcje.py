@@ -85,16 +85,28 @@ class Plansza:
 # def pytaj(i):
 # i=int(input('gracz',i,'proszę podać nr pola'))
 
+def blokuj(plansza,znak):
+    pass
+
+def wygraj(plansza,znak):
+    pass
+
+import random as rand
 
 def ruchKomp(plansza,znak):
     a=plansza.sprawdz()
     print(a)
     if(a[0]==2):
         print('gracz',a[2],'blisko wygranej')
+        if a[2]==znak:
+            a[0]
+            wygraj(plansza,znak)
+        else:
+            blokuj(plansza,znak)
     elif(a[0]==3):
         print('KONIEC')
     else:
-        print('randomiks')
+        plansza.wczytajPole(znak,rand.randint(1,9))
 
 
 def ruchGracza(plansza,znak):
@@ -124,6 +136,8 @@ def pierwszy_etap(plansza):
     if a[0]==3:
         return 0
     return plansza,znak
+
+
 def drugi_etap(plansza,znak):
     print('Drugi Etap')
     print('Grasz:',znak)
